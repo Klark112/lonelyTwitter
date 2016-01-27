@@ -18,9 +18,7 @@ public class NormalTweet extends Tweet implements Tweetable {
         return this.date;
     }
 
-    public String getMessage() {
-        return this.message;
-    }
+    public String getMessage() {return this.message;}
 
     @Override
     public Boolean isImportant() {
