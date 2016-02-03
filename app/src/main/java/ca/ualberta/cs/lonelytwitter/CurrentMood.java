@@ -3,7 +3,12 @@ package ca.ualberta.cs.lonelytwitter;
 import java.util.Date;
 
 /**
- * Created by klark on 1/12/16.
+ * @author klark
+ * @since 1/12/16
+ * @deprecated never fully implemented
+ * was supposed to show a mood attached to the tweet
+ * @see Frustrated
+ * @see Gleeful
  */
 public abstract class CurrentMood {
     public Date date;
