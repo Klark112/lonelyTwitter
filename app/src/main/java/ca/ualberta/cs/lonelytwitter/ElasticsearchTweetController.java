@@ -27,11 +27,29 @@ public class ElasticsearchTweetController {
         protected ArrayList<Tweet> doInBackground(String... search_strings) {
             verifyClient();
 
-            //Start our initial array lisst (Empty)
+            //Start our initial array list (Empty)
             ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 
             //NOTE: Huge Assumption - that only the first search term will be used
-            Search search = new Search.Builder(search_strings[0]).addIndex("testing").addType("tweet").build();
+
+            String query = "{\n" +
+                    "    \"total\": \"70\"," +
+                    "    \"max_score\": \"1.0\"," +
+
+                    "    \"hits\": {\n" +
+                    "        \"_index\" : \"testing\"" +
+                    "        \"_type\" : \"tweet\"" +
+                    "        \"_id\" : \"7lV3qrftT5CRYO-rU8q12w\"" +
+                    "        \"_score\" : \"1.0\"" +
+                    "        \"_source\" : \"{\"date\":\"2016-02-23T20:26:26-0500\",\"message\":\"halloo\"}\"" +
+                    "    }\n" +
+                    "}";
+
+            Search search = new Search.TemplateBuilder(query)
+                    // multiple index or types can be added.
+                    .addIndex("testing")
+                    .addIndex("tweet")
+                    .build();
 
             try {
                 SearchResult execute = client.execute(search);
